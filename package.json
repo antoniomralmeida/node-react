@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && npm start",
-    "server": "node server.js",
+    "server": "node server/server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "mysql2": "^1.6.4",
+    "sequelize": "^4.42.0"
   },
   "devDependencies": {
     "concurrently": "^3.6.1"
