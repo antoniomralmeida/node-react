@@ -1,15 +1,26 @@
-function route(app, mongoose){
-    function route(app, mongoose){
- 
-    // Create new User item
-    app.post('/user/create', function(req, res){
-      ...
-    }
- 
-    // Edit user
-    app.put('/user/:id/edit', function(req, res){
-     ...
-    }
- 
-    ...
- }
+'use strict';
+
+const User = require('../model/user')
+
+function create (req, res) {
+  User.save({
+  username: 'janedoe',
+  birthday: new Date(1980, 6, 20)
+  });
+
+  res.render('/index', {
+        title: 'Home'
+    });
+}
+
+function info (req, res) {
+    res.render('home/info', {
+        title: 'More info'
+    });
+}
+
+module.exports = {
+    create: create,
+    info: info
+};
+

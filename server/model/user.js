@@ -1,19 +1,23 @@
+const Sequelize = require('sequelize');
+
 // Database
-const db = require('../config/database');
+const db = require('../config/database').db;
 
 const User = db.define('user', {
     username: Sequelize.STRING,
     birthday: Sequelize.DATE
   });
   
-  db.sync()
-    .then(() => User.create({
-      username: 'janedoe',
-      birthday: new Date(1980, 6, 20)
-    }))
-    .then(jane => {
-      console.log(jane.toJSON());
-    });
   
+function save(user){
+    function save(user){
+        console.log('user.save');
+        User.create({user})
+            .then(jane => {
+            console.log(jane.toJSON());
+            
+        });
+    }
+}
   
-  
+ module.exports = {User, save};
