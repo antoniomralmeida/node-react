@@ -10,8 +10,8 @@ function create (req, res) {
   res.json(json);
 }
 
-function list(req, res) {
-    res.json(user.list());
+function list(result) {
+    user.list(result);
 }
 
 module.exports = {

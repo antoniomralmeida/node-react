@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 // Database
-const db = require('../config/database').db;
+const db = require('../config/database').database;
 
 const User = db.define('user', {
     username: Sequelize.STRING,
@@ -11,16 +11,15 @@ const User = db.define('user', {
   
 function save(user){
        User.create(user)
-            .then(jane => {
-            console.log(jane.toJSON());        
+            .then(n => {
+            console.log(n.toJSON());        
         });
 }
 
-function list() {
-    results =  [];
-    User.findAll({ limit: 10 }).then( rows  => results = JSON.stringify(rows));  
-    console.log(results);
-    return results;
+function list(result) {
+    User.findAll({})
+    .then( rows  => result = JSON.stringify(rows))
+    .catch(err => result.status(412));  
 }
   
  module.exports = {User, save, list};

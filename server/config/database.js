@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const db = new Sequelize('node', 'root', 'password', {
+const database = new Sequelize('node', 'root', 'password', {
   host: 'localhost',
   dialect: 'mysql',
 
@@ -14,9 +14,9 @@ const db = new Sequelize('node', 'root', 'password', {
 });
 
 function start() {
-  db.authenticate()
+  database.authenticate()
   .then(()=> console.log('Database conected.'))
   .catch(err => console.log(err)); 
 }
 
-module.exports = {db, start};
+module.exports = {database, start};

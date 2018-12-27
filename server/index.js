@@ -5,14 +5,15 @@ let
     bodyParser = require('body-parser'),
     db = require('./config/database'),
     routes = require('./routes/index'),
-    app = express(),
     port = process.env.PORT || 5000;
+    
+    global.app = express();
     
     function create() {
             // Returns middleware that parses json
             app.use(bodyParser.json());
             app.set('view engine', 'html');
-            app.db = db.db;
+            app.database = db.database;
             
             // Set up routes    
             routes.init(app);

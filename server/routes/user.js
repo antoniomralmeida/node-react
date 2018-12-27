@@ -7,6 +7,9 @@ const
 let router = express.Router();
 
 router.use('/create', userController.create);
-router.use('/list', userController.list);
+router.use('/list').get((req,res) => {
+    userController.list()
+    .then(result => res.json(result));
+});
 
 module.exports = router;
