@@ -1,26 +1,21 @@
 'use strict';
 
-const User = require('../model/user')
+const user = require('../model/user')
 
 function create (req, res) {
-  User.save({
-  username: 'janedoe',
-  birthday: new Date(1980, 6, 20)
-  });
+    const json = {username:'xxxxxx',
+    birthday: new Date(2018,12,26)};
 
-  res.render('/index', {
-        title: 'Home'
-    });
+  user.save(json);
+  res.json(json);
 }
 
-function info (req, res) {
-    res.render('home/info', {
-        title: 'More info'
-    });
+function list(req, res) {
+    res.json(user.list());
 }
 
 module.exports = {
     create: create,
-    info: info
+    list, list
 };
 

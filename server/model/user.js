@@ -10,14 +10,17 @@ const User = db.define('user', {
   
   
 function save(user){
-    function save(user){
-        console.log('user.save');
-        User.create({user})
+       User.create(user)
             .then(jane => {
-            console.log(jane.toJSON());
-            
+            console.log(jane.toJSON());        
         });
-    }
+}
+
+function list() {
+    results =  [];
+    User.findAll({ limit: 10 }).then( rows  => results = JSON.stringify(rows));  
+    console.log(results);
+    return results;
 }
   
- module.exports = {User, save};
+ module.exports = {User, save, list};
