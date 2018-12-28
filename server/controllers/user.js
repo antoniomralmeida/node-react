@@ -3,15 +3,17 @@
 const user = require('../model/user')
 
 function create (req, res) {
-    const json = {username:'xxxxxx',
-    birthday: new Date(2018,12,26)};
-
-  user.save(json);
-  res.json(json);
+  user.create({username: req.query.username,
+    birthday: req.query.birthday,
+    email: req.query.email})
+    .then(u => res.send(u) )  
+   .catch(err => res.send(err));  
 }
 
-function list(result) {
-    user.list(result);
+function list(req, res) {
+    user.findAll({})
+    .then( rows  => res.json(rows) )
+    .catch(err => res.status(412));  
 }
 
 module.exports = {

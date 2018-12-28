@@ -6,10 +6,7 @@ const
 
 let router = express.Router();
 
-router.use('/create', userController.create);
-router.use('/list').get((req,res) => {
-    userController.list()
-    .then(result => res.json(result));
-});
+router.get('/add', userController.create);
+router.use('/list', userController.list);
 
 module.exports = router;
