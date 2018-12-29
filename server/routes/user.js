@@ -6,7 +6,8 @@ const
 
 let router = express.Router();
 
-router.get('/add', userController.create);
-router.use('/list', userController.list);
-
+router.use('/find', userController.find);
+router.get('/create', userController.create);
+router.get('/update/:id', userController.update);
+router.use('/destroy/:id', userController.destroy);
 module.exports = router;
