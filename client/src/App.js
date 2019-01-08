@@ -1,39 +1,70 @@
-import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Users from './components/user';
+import React from 'react';
+import {
+  Container,
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from 'reactstrap';
 
-class App extends Component {
-  state = {
-    response: ''
-  };
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
   }
-
-  callApi = async () => {
-    const response = await fetch('/api/mensagem');
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
-
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-         <p className="App-intro">{this.state.response}</p>
-         <Users/>
+      <div>
+         <Container>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/components/">Components</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+              </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Options
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>
+                    Option 1
+                  </DropdownItem>
+                  <DropdownItem>
+                    Option 2
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    Reset
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Nav>
+          </Collapse>
+        </Navbar>
+        </Container>
       </div>
     );
   }
 }
-
 export default App;
